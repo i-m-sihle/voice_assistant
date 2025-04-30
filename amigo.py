@@ -4,17 +4,14 @@ import wikipedia
 import webbrowser
 import os
 
-# init pyttsx
+# Initialize pyttsx
 engine = pyttsx3.init("sapi5")
 voices = engine.getProperty("voices")
-
 engine.setProperty('voice', voices[1].id)  # 1 for female and 0 for male voice
-
 
 def speak(audio):
     engine.say(audio)
     engine.runAndWait()
-
 
 def take_command():
     r = sr.Recognizer()
@@ -28,55 +25,81 @@ def take_command():
         print("User said:" + query + "\n")
     except Exception as e:
         print(e)
-        speak("I didnt understand")
+        speak("I didn't understand")
         return "None"
     return query
 
-
 if __name__ == '__main__':
-
-    speak("Amigo assistance activated ")
-    speak("How can i help you")
+    speak("Amigo assistance activated")
+    speak("How can I help you?")
     while True:
         query = take_command().lower()
+        
         if 'wikipedia' in query:
-            speak("Searching Wikipedia ...")
+            speak("Searching Wikipedia...")
             query = query.replace("wikipedia", '')
             results = wikipedia.summary(query, sentences=2)
-            speak("According to wikipedia")
+            speak("According to Wikipedia")
             speak(results)
+            speak("Done. What can I do next?")
+            
         elif 'are you' in query:
-            speak("I am amigo developed by Jaspreet Singh")
+            speak("I am Amigo, developed by Jaspreet Singh")
+            speak("Done. What can I do next?")
+            
         elif 'open youtube' in query:
-            speak("opening youtube")
+            speak("Opening YouTube")
             webbrowser.open("youtube.com")
+            speak("Done. What can I do next?")
+            
         elif 'open google' in query:
-            speak("opening google")
+            speak("Opening Google")
             webbrowser.open("google.com")
+            speak("Done. What can I do next?")
+            
         elif 'open github' in query:
-            speak("opening github")
+            speak("Opening GitHub")
             webbrowser.open("github.com")
+            speak("Done. What can I do next?")
+            
         elif 'open stackoverflow' in query:
-            speak("opening stackoverflow")
+            speak("Opening StackOverflow")
             webbrowser.open("stackoverflow.com")
+            speak("Done. What can I do next?")
+            
         elif 'open spotify' in query:
-            speak("opening spotify")
+            speak("Opening Spotify")
             webbrowser.open("spotify.com")
+            speak("Done. What can I do next?")
+            
         elif 'open whatsapp' in query:
-            speak("opening whatsapp")
+            speak("Opening WhatsApp")
             loc = "C:\\Users\\jaspr\\AppData\\Local\\WhatsApp\\WhatsApp.exe"
             os.startfile(loc)
+            speak("Done. What can I do next?")
+            
         elif 'play music' in query:
-            speak("opening music")
+            speak("Opening music")
             webbrowser.open("spotify.com")
+            speak("Done. What can I do next?")
+            
         elif 'local disk d' in query:
-            speak("opening local disk D")
+            speak("Opening local disk D")
             webbrowser.open("D://")
+            speak("Done. What can I do next?")
+            
         elif 'local disk c' in query:
-            speak("opening local disk C")
+            speak("Opening local disk C")
             webbrowser.open("C://")
+            speak("Done. What can I do next?")
+            
         elif 'local disk e' in query:
-            speak("opening local disk E")
+            speak("Opening local disk E")
             webbrowser.open("E://")
+            speak("Done. What can I do next?")
+            
         elif 'sleep' in query:
-            exit(0)
+            speak("Goodbye!")
+            break  # This will exit the loop and the program
+
+
